@@ -5,6 +5,7 @@ RSpec.describe TasksController, type: :controller do
     it "should list the tasks in the database" do
       task1 = FactoryBot.create(:task)
       task2 = FactoryBot.create(:task)
+      task1.update_attributes(title: "Something else")
       get :index
       expect(response).to have_http_status :success
       response_value = ActiveSupport::JSON.decode(@response.body)
